@@ -47,7 +47,7 @@ const ShopMenu = () => {
     if (selectedShopId) {
       getShopMenu();
     }
-  }, [selectedShopId]);
+  }, [selectedShopId, getShopMenu]);
 
   const content = useMemo(() => {
     let content;
@@ -72,7 +72,7 @@ const ShopMenu = () => {
       );
     }
     return content;
-  }, [selectedShopId, menuItems, shoppingCard]);
+  }, [selectedShopId, menuItems, shoppingCard, addFoodToCart]);
 
   return <>{content}</>;
 };

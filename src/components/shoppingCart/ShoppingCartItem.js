@@ -9,7 +9,7 @@ const ShoppingCartItem = ({
   return (
     <div className="flex border w-full h-auto rounded p-5 gap-4">
       <div className="w-1/2 h-auto">
-        <img className="w-full object-cover" src={`${image}`} />
+        <img className="w-full object-cover" src={`${image}`} alt="img" />
       </div>
       <div className="flex flex-col text-center w-1/2">
         <h5>{title}</h5>

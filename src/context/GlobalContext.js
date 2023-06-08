@@ -34,7 +34,7 @@ const GlobalContextProvider = ({ children }) => {
       setValue,
       orderClickHandler,
     }),
-    [shoppingCard, selectedShopId, value]
+    [shoppingCard, selectedShopId, value, orderClickHandler]
   );
 
   console.log(shoppingCard);

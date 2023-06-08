@@ -23,6 +23,7 @@ const Coupons = () => {
                 <img
                   className="object-cover h-36 w-full rounded"
                   src={coupon.img}
+                  alt="img"
                 />
               </div>
               <div className="whitespace-nowrap text-center my-5">
