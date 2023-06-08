@@ -22,7 +22,7 @@ const GlobalContextProvider = ({ children }) => {
       items: { ...shoppingCard },
     };
     postOrderAPI(data);
-  });
+  }, []);
 
   const globalContextValue = useMemo(
     () => ({
@@ -34,7 +34,7 @@ const GlobalContextProvider = ({ children }) => {
       setValue,
       orderClickHandler,
     }),
-    [shoppingCard, selectedShopId, value]
+    []
   );
 
   console.log(shoppingCard);
