@@ -51,6 +51,7 @@ const History = () => {
                           <img
                             className="object-cover h-16"
                             src={`${item.image}`}
+                            alt="img"
                           />
                         </div>
 
