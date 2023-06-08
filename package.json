@@ -42,5 +42,13 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.3.2"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-private-property-in-object"
+    ]
   }
 }
