@@ -6,15 +6,14 @@ import { getShopsAPI } from "../../api/api";
 
 const Shops = () => {
   const [shops, setShops] = useState(null);
-  const { selectedShopId, setSelectedShopId } = useContext(GlobalContext);
+  const { selectedShopId, setSelectedShopId, shoppingCard } =
+    useContext(GlobalContext);
 
   const navigate = useNavigate();
 
   const onSelectShopHandler = (shopId) => {
-    if (selectedShopId === shopId) {
-      setSelectedShopId(null);
-      navigate("/");
-    } else {
+    if (shoppingCard.foods.length === 0) {
+      console.log(shoppingCard.food);
       setSelectedShopId(shopId);
       navigate(`/?shop=${shopId}`);
     }
@@ -42,8 +41,9 @@ const Shops = () => {
           {shops.map((shop) => (
             <ShopItem
               key={shop.id}
+              shopId={shop.id}
               onSelectHandler={() => onSelectShopHandler(shop.id)}
-              title={shop.title}
+              title={shop.name}
               isActive={shop.id === selectedShopId}
             />
           ))}

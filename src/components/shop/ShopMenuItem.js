@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 
-const ShopMenuItem = ({ title, description, onSelectHandler, price }) => {
+const ShopMenuItem = ({
+  title,
+  shopId,
+  description,
+  onSelectHandler,
+  price,
+  image,
+}) => {
   const [disabled, setDisabled] = useState(false);
 
   const onClickAddHandler = () => {
@@ -14,7 +22,9 @@ const ShopMenuItem = ({ title, description, onSelectHandler, price }) => {
 
   return (
     <div className="w-[230px] h-fit p-5 border rounded">
-      <div className="w-full h-[100px] bg-yellow-300">img</div>
+      <div className="w-full">
+        <img src={`${image}`} />
+      </div>
       <h5 className="my-4">{title}</h5>
       <div className="flex justify-between items-center">
         <p>price: {price}</p>

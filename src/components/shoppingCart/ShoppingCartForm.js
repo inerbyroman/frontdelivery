@@ -1,12 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const ShoppingCartForm = () => {
-  const [value, setValue] = useState({
-    address: "",
-    email: "",
-    phone: "",
-    name: "",
-  });
+  const { value, setValue } = useContext(GlobalContext);
 
   const onChangeHandler = (event, key) => {
     setValue((prev) => ({ ...prev, [key]: event.target.value }));
@@ -16,10 +12,10 @@ const ShoppingCartForm = () => {
     <form className="flex w-full flex-col p-5 gap-[20px] border rounded h-[80vh]">
       <input
         className="p-2 border rounded"
-        placeholder="Address"
+        placeholder="Name"
         type="text"
-        value={value.address}
-        onChange={(e) => onChangeHandler(e, "address")}
+        value={value.name}
+        onChange={(e) => onChangeHandler(e, "name")}
       />
       <input
         className="p-2 border rounded"
@@ -37,10 +33,10 @@ const ShoppingCartForm = () => {
       />
       <input
         className="p-2 border rounded"
-        placeholder="Name"
+        placeholder="Address"
         type="text"
         value={value.address}
-        onChange={(e) => onChangeHandler(e, "name")}
+        onChange={(e) => onChangeHandler(e, "address")}
       />
     </form>
   );
