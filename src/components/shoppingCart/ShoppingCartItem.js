@@ -4,10 +4,13 @@ const ShoppingCartItem = ({
   count,
   addHandler,
   removeHandler,
+  image,
 }) => {
   return (
-    <div className="flex border w-full h-[150px] rounded p-5 gap-4">
-      <div className="w-1/2 h-full  bg-yellow-300">img</div>
+    <div className="flex border w-full h-auto rounded p-5 gap-4">
+      <div className="w-1/2 h-auto">
+        <img className="w-full object-cover" src={`${image}`} alt="img" />
+      </div>
       <div className="flex flex-col text-center w-1/2">
         <h5>{title}</h5>
         <p>price: {price}</p>

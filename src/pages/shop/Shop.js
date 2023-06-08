@@ -12,7 +12,7 @@ const Shop = () => {
     if (searchObj.shop) {
       setSelectedShopId(Number(searchObj.shop));
     }
-  }, []);
+  }, [setSelectedShopId]);
 
   return (
     <div className="flex gap-5">

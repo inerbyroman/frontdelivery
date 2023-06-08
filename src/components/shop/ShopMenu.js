@@ -9,7 +9,7 @@ const ShopMenu = () => {
   const { selectedShopId, shoppingCard, setShoppingCard } =
     useContext(GlobalContext);
 
-  const addFoodToCart = (item) => {
+  const addFoodToCart = async (item) => {
     const shoppingCardFoodsCopy = [...shoppingCard.foods];
     const idx = shoppingCardFoodsCopy.findIndex(
       (selectedFood) => selectedFood.id === item.id
@@ -20,12 +20,14 @@ const ShopMenu = () => {
     } else {
       shoppingCardFoodsCopy.push({
         id: item.id,
-        title: item.title,
+        shopId: item.shopId,
+        title: item.name,
         price: item.price,
+        image: item.image,
         count: 1,
       });
     }
-    setShoppingCard({
+    await setShoppingCard({
       foods: [...shoppingCardFoodsCopy],
       price: (shoppingCard.price += item.price),
     });
@@ -35,9 +37,7 @@ const ShopMenu = () => {
     setMenuItems(null);
     try {
       const data = await getShopMenuAPI(selectedShopId);
-      setTimeout(() => {
-        setMenuItems(data);
-      }, 1000);
+      setMenuItems(data);
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +47,7 @@ const ShopMenu = () => {
     if (selectedShopId) {
       getShopMenu();
     }
-  }, [selectedShopId]);
+  }, [selectedShopId, getShopMenu]);
 
   const content = useMemo(() => {
     let content;
@@ -60,17 +60,19 @@ const ShopMenu = () => {
           {menuItems.map((item) => (
             <ShopMenuItem
               key={item.id}
-              title={item.title}
+              shopId={item.shopId}
+              title={item.name}
               description={item.description}
               price={item.price}
               onSelectHandler={() => addFoodToCart(item)}
+              image={item.image}
             />
           ))}
         </div>
       );
     }
     return content;
-  }, [selectedShopId, menuItems, shoppingCard]);
+  }, []);
 
   return <>{content}</>;
 };
