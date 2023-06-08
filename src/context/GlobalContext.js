@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 import { postOrderAPI } from "../api/api";
 
 export const GlobalContext = createContext();
@@ -14,7 +14,7 @@ const GlobalContextProvider = ({ children }) => {
     address: "",
   });
 
-  const orderClickHandler = () => {
+  const orderClickHandler = useCallback(() => {
     console.log(value);
     const data = {
       shopId: selectedShopId,
@@ -22,7 +22,7 @@ const GlobalContextProvider = ({ children }) => {
       items: { ...shoppingCard },
     };
     postOrderAPI(data);
-  };
+  });
 
   const globalContextValue = useMemo(
     () => ({
@@ -34,7 +34,7 @@ const GlobalContextProvider = ({ children }) => {
       setValue,
       orderClickHandler,
     }),
-    [shoppingCard, selectedShopId, value, orderClickHandler]
+    [shoppingCard, selectedShopId, value]
   );
 
   console.log(shoppingCard);
