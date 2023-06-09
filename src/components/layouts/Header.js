@@ -22,9 +22,9 @@ const MENU_ITEMS = [
 const Header = ({ children }) => {
   return (
     <>
-      <div className="w-full h-[10vh] flex gap-[20px] mx-5">
+      <div className="w-full h-[10vh] flex gap-[30px] mx-10">
         {MENU_ITEMS.map((item, index) => (
-          <Link className="self-center" key={item.title} to={item.href}>
+          <Link className="self-center " key={item.title} to={item.href}>
             {item.title}
           </Link>
         ))}

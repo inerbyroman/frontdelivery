@@ -72,7 +72,7 @@ const ShopMenu = () => {
       );
     }
     return content;
-  }, []);
+  }, [selectedShopId, menuItems, shoppingCard]);
 
   return <>{content}</>;
 };

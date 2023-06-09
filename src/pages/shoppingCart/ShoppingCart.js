@@ -5,7 +5,8 @@ import { GlobalContext } from "../../context/GlobalContext";
 import { getCurrentCouponAPI } from "../../api/api";
 
 const ShoppingCart = () => {
-  const { shoppingCard, orderClickHandler } = useContext(GlobalContext);
+  const { shoppingCard, orderClickHandler, setGlobalDiscount } =
+    useContext(GlobalContext);
   const [codeValue, setCodeValue] = useState();
   const [discount, setDiscount] = useState();
 
@@ -19,10 +20,13 @@ const ShoppingCart = () => {
     }
     if (coupon) {
       const result = coupon[0]?.size.slice(0, -1) * 0.01;
-      console.log(result);
+      console.log("123", result);
       setDiscount(result);
+      setGlobalDiscount(result);
     }
   };
+
+  console.log(discount);
   return (
     <div>
       <div className="mx-5 flex gap-5">

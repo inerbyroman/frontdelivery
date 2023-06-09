@@ -13,8 +13,8 @@ const ShopItem = ({ shopId, title, onSelectHandler, disabled, isActive }) => {
   return (
     <div
       className={`${disabled ? "disabled" : ""} ${
-        isActive ? "active" : ""
-      }  cursor-pointer`}
+        isActive ? "active bg-lime-500" : ""
+      }  cursor-pointer w-full h-10 border border-black rounded flex justify-center items-center`}
       onClick={clickHandler}
     >
       {title}
