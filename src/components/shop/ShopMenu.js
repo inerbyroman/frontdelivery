@@ -47,7 +47,7 @@ const ShopMenu = () => {
     if (selectedShopId) {
       getShopMenu();
     }
-  }, [selectedShopId, getShopMenu]);
+  }, [selectedShopId]);
 
   const content = useMemo(() => {
     let content;
