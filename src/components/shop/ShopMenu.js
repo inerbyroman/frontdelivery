@@ -33,7 +33,7 @@ const ShopMenu = () => {
     });
   };
 
-  const getShopMenu = useCallback(async () => {
+  const getShopMenu =async () => {
     setMenuItems(null);
     try {
       const data = await getShopMenuAPI(selectedShopId);
@@ -41,7 +41,7 @@ const ShopMenu = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [selectedShopId]);
+  };
 
   useEffect(() => {
     if (selectedShopId) {
