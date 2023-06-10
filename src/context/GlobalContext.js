@@ -1,11 +1,15 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { postOrderAPI } from "../api/api";
 
 export const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
-  const [selectedShopId, setSelectedShopId] = useState(null);
-  const [shoppingCard, setShoppingCard] = useState({ foods: [], price: 0 });
+  const [shoppingCard, setShoppingCard] = useState(
+    JSON.parse(localStorage.getItem("card")) || { foods: [], price: 0 }
+  );
+  const [selectedShopId, setSelectedShopId] = useState(
+    shoppingCard.foods[0]?.shopId || null
+  );
   const [globalDiscount, setGlobalDiscount] = useState();
   const [value, setValue] = useState({
     name: "",
@@ -14,10 +18,11 @@ const GlobalContextProvider = ({ children }) => {
     address: "",
   });
 
+  useEffect(() => {
+    localStorage.setItem("card", JSON.stringify(shoppingCard));
+  }, [shoppingCard]);
+
   const orderClickHandler = () => {
-    console.log(value);
-    // let copyShoppingCard = [...shoppingCard];
-    console.log("GD", globalDiscount);
     if (globalDiscount) {
       shoppingCard.price =
         (shoppingCard.price - shoppingCard.price * globalDiscount).toFixed(2) +
@@ -29,6 +34,8 @@ const GlobalContextProvider = ({ children }) => {
       items: { ...shoppingCard },
     };
     postOrderAPI(data);
+    setValue({ name: "", email: "", phone: "", address: "" });
+    setShoppingCard({ foods: [], price: 0 });
   };
 
   const globalContextValue = useMemo(

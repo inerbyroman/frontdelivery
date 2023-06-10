@@ -16,17 +16,17 @@ const ShoppingCart = () => {
 
     let coupon;
     if (codeValue?.length > 3) {
-      coupon = await getCurrentCouponAPI(e.target.value);
-    }
-    if (coupon) {
-      const result = coupon[0]?.size.slice(0, -1) * 0.01;
-      console.log("123", result);
-      setDiscount(result);
-      setGlobalDiscount(result);
+      setTimeout(async () => {
+        coupon = await getCurrentCouponAPI(e.target.value);
+        if (coupon) {
+          const result = coupon[0]?.size.slice(0, -1) * 0.01;
+          setDiscount(result);
+          setGlobalDiscount(result);
+        }
+      }, 1000);
     }
   };
 
-  console.log(discount);
   return (
     <div>
       <div className="mx-5 flex gap-5">
@@ -37,7 +37,12 @@ const ShoppingCart = () => {
       </div>
 
       <div className="flex justify-end mr-5 mt-5 gap-10 items-center">
-        <input value={codeValue} onChange={codeHandler} />
+        <input
+          className="border border-black rounded p-3"
+          placeholder="Enter Discount"
+          value={codeValue}
+          onChange={codeHandler}
+        />
         <p>
           Total price:
           {discount

@@ -13,7 +13,6 @@ const Shops = () => {
 
   const onSelectShopHandler = (shopId) => {
     if (shoppingCard.foods.length === 0) {
-      console.log(shoppingCard.food);
       setSelectedShopId(shopId);
       navigate(`/?shop=${shopId}`);
     }

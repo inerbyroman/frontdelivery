@@ -6,10 +6,8 @@ const Coupons = () => {
   useMemo(async () => {
     setCouponsData(await getCouponsAPI());
   }, []);
-  console.log(couponsData);
 
   const copyCode = (code) => {
-    console.log(code);
     navigator.clipboard.writeText(code);
   };
 

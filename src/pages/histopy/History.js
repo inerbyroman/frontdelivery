@@ -11,7 +11,6 @@ const History = () => {
     setTimeout(async () => {
       if (sendData?.email?.length > 3 && sendData?.phone?.length > 3) {
         const data = await getOrderAPI(sendData.email, sendData.phone);
-        console.log(data);
         setCurrentHistory(data);
       }
     }, 2000);
@@ -44,7 +43,6 @@ const History = () => {
               <div className="border border-black rounded p-3 flex items-center justify-between gap-5">
                 <div className="flex gap-4 overflow-x-auto">
                   {order.foods.map((item) => {
-                    console.log("RED", item);
                     return (
                       <div className="border border-black rounded p-3 flex">
                         <div className="w-full">

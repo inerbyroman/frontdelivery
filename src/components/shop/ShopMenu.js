@@ -15,7 +15,6 @@ const ShopMenu = () => {
       (selectedFood) => selectedFood.id === item.id
     );
     if (idx > -1) {
-      console.log(item);
       shoppingCardFoodsCopy[idx].count += 1;
     } else {
       shoppingCardFoodsCopy.push({
